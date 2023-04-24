@@ -8,6 +8,8 @@ const PORT = 8080;
 dotenv.config();
 connectDB();
 
+app.use(express.json());
+
 app.get('/', (req, res) => {
   res.send('hello world');
 });
