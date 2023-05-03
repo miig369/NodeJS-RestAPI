@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
+import userRoutes from './routes/userRoutes.js';
 
 const app = express();
 const PORT = 8080;
@@ -10,13 +11,9 @@ connectDB();
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('hello world');
-});
+//routes
+app.use('/api/users', userRoutes);
 
-app.use('/greeting', (req, res) => {
-  res.send('hi there');
-});
 app.listen(PORT, () => {
   console.log('server started at ' + PORT);
 });
