@@ -11,6 +11,7 @@ const protect = asyncHandler(async (req, res, next) => {
   if (
     // check if token start with bearer and a space
     // if token exists match it to the user
+    // API TESING OIN POSTMAN - Headers -> key - Authorization -> Value - Bearer token
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
   ) {

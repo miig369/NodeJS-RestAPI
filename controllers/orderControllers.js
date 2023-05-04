@@ -1,12 +1,12 @@
 import asyncHandler from 'express-async-handler';
-import Order from '../models/orderModel';
+import Order from '../models/orderModel.js';
 
 // create a order
 // Route - POST /api/orders
 const createorder = asyncHandler(async (req, res) => {
   const { items } = req.body;
 
-  if (items && items.length === 0) {
+  if (items && items.length == 0) {
     res.status(400);
     throw new Error('No Item in order');
   } else {
@@ -16,6 +16,7 @@ const createorder = asyncHandler(async (req, res) => {
     });
 
     const newOrder = await order.save();
+
     res.status(201).json(newOrder);
   }
 });
