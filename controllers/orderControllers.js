@@ -22,11 +22,42 @@ const createorder = asyncHandler(async (req, res) => {
 
 // get all orders
 // Route - GET /api/orders
+const getOrders = asyncHandler(async (req, res) => {
+  const orders = await Order.find({}).populate('user', 'id firstName');
+  if (orders) {
+    res.status(200).json(orders);
+  } else {
+    res.status(404);
+    throw new Error('Orders not found');
+  }
+});
 
-// edit order
-// Route - PUT /api/orders/:id
+// get order by id
+// Route - GET /api/orders/:id
+const getOrderById = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id).populate(
+    'user',
+    'firstName email'
+  );
+  if (order) {
+    res.status(200).json(order);
+  } else {
+    res.status(404);
+    throw new Error('Orders not found');
+  }
+});
 
 // delete order
 // Route - DELETE /api/orders/:id
+const deleteOrder = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id);
+  if (order) {
+    await order.deleteOne();
+    res.status(201).json({ message: 'Order Deleted' });
+  } else {
+    res.status(404);
+    throw new Error('Order not found');
+  }
+});
 
-export { createorder };
+export { createorder, getOrders, getOrderById, deleteOrder };
