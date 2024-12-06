@@ -1,6 +1,6 @@
 # NodeJS Rest API
 
-A brief description of what this project does and who it's for
+NodeJS Rest API
 
 ## To run the backend
 
